@@ -2,15 +2,15 @@ import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 
 export default function Quiz({ 
-  question, 
-  answer, 
-  cardNumber, 
-  cardTotal 
+  navigation
 }) {
+  const { questions } = navigation.state.params
+  const cardNumber = 1
+  const cardTotal = questions.length
   return (
     <View>
       <Text>{cardNumber}/{cardTotal}</Text>
-      <Text>question</Text>
+      <Text>{questions[0].question}</Text>
       <TouchableOpacity>
         <Text>
           Answer

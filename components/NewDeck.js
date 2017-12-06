@@ -11,7 +11,7 @@ export default class NewDeck extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{flex:1}}>
         <Text>
           What is the title of your new deck?
         </Text>
