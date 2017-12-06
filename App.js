@@ -1,11 +1,14 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import DeckCardList from './components/DeckCardList'
 import Deck from './components/Deck'
 import Quiz from './components/Quiz'
 import NewDeck from './components/NewDeck'
 import NewQuestionCard from './components/NewQuestionCard'
 import { TabNavigator, StackNavigator } from 'react-navigation'
+import reducer from './reducers'
 
 const Tabs = TabNavigator({
   Decks: {
@@ -57,64 +60,10 @@ const MainNavigator = StackNavigator({
 
 export default class App extends React.Component {
   render() {
-    const decks = [
-      {
-        title: "Deck 1",
-        cardTotal: 3,
-        questions: [
-          {
-            question: 'Deck 1 Question 1',
-            answer: 'Deck 1 answer 1'
-          },
-          {
-            question: 'Deck 1 Question 2',
-            answer: 'Deck 1 answer 2'
-          },
-          {
-            question: 'Deck 1 Question 3',
-            answer: 'Deck 1 answer 3'
-          }
-        ]
-      },
-      {
-        title: "Deck 2",
-        cardTotal: 4,
-        questions: [
-          {
-            question: 'Deck 2 Question 1',
-            answer: 'Deck 2 answer 1'
-          },
-          {
-            question: 'Deck 2 Question 2',
-            answer: 'Deck 2 answer 2'
-          },
-          {
-            question: 'Deck 2 Question 3',
-            answer: 'Deck 2 answer 3'
-          }
-        ]
-      },
-      {
-        title: "Deck 3",
-        cardTotal: 5,
-        questions: [
-          {
-            question: 'Deck 3 Question 1',
-            answer: 'Deck 3 answer 1'
-          },
-          {
-            question: 'Deck 3 Question 2',
-            answer: 'Deck 3 answer 2'
-          },
-          {
-            question: 'Deck 3 Question 3',
-            answer: 'Deck 3 answer 3'
-          }
-        ]
-      }
-    ]
     return (
-        <MainNavigator screenProps={{decks}}/>
+      <Provider store={createStore(reducer)}>
+        <MainNavigator />
+      </Provider>
     );
   }
 }

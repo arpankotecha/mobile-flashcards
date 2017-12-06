@@ -1,20 +1,23 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity } from 'react-native'
 
-export default class Deck extends Component {
+class Deck extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.title
   })
 
   render() {
-    const { title, cardTotal, questions } = this.props.navigation.state.params
+    const { title, questions } = this.props
     return (
       <View>
         <Text>{title}</Text>
-        <Text>{cardTotal} cards</Text>
+        <Text>{questions.length} cards</Text>
+        <Text>{JSON.stringify(questions)} cards</Text>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate(
-            'NewQuestionCard'
+            'NewQuestionCard',
+            { title }
           )}>
           <Text>Add Card</Text>
         </TouchableOpacity>
@@ -29,3 +32,15 @@ export default class Deck extends Component {
     )
   }
 }
+
+function mapStateToProps({ decks }, props){
+  const { title } = props.navigation.state.params
+  const deck = decks.filter(d => (d.title === title))[0]
+
+  return {
+    title: deck.title,
+    questions: deck.questions
+  }
+}
+
+export default connect(mapStateToProps)(Deck)

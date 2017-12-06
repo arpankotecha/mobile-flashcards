@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
 import { Text, View, TextInput, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
+import { newDeck } from '../actions'
+import { NavigationActions } from 'react-navigation'
 
-export default class NewDeck extends Component {
+class NewDeck extends Component {
   constructor(props) {
     super(props)
     this.state = {
       title: ''
     }
+  }
+
+  submit = () => {
+    this.props.dispatch(newDeck(this.state.title))
+
+    this.props.navigation.dispatch(NavigationActions.back())
   }
 
   render() {
@@ -20,7 +29,8 @@ export default class NewDeck extends Component {
           onChangeText={title => this.setState({ title })}
           placeholder='Deck Title'
         />
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={this.submit}>
           <Text>
             Submit
           </Text>
@@ -29,3 +39,5 @@ export default class NewDeck extends Component {
     )
   }
 }
+
+export default connect()(NewDeck)

@@ -1,13 +1,26 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { View, TextInput, TouchableOpacity, Text } from 'react-native'
+import { newQuestion } from '../actions'
+import { NavigationActions } from 'react-navigation'
 
-export default class NewQuestionCard extends Component {
+class NewQuestionCard extends Component {
   constructor(props) {
     super(props)
     this.state = {
       question: '',
       answer: ''
     }
+  }
+
+  submit = () => {
+    this.props.dispatch(newQuestion({
+      deckTitle: this.props.navigation.state.params.title,
+      question: this.state.question,
+      answer: this.state.answer
+    }))
+
+    this.props.navigation.dispatch(NavigationActions.back())
   }
 
   render() {
@@ -23,10 +36,13 @@ export default class NewQuestionCard extends Component {
           onChangeText={answer => this.setState({ answer })}
           placeholder='Answer'
         />
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={this.submit}>
           <Text>Submit</Text>
         </TouchableOpacity>
       </View>
     )
   }
 }
+
+export default connect()(NewQuestionCard)

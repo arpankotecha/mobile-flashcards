@@ -7,16 +7,16 @@ import {
   TouchableOpacity 
 } from 'react-native'
 
-export default function DeckCard({ navigation, title, cardTotal, questions}) {
+export default function DeckCard({ navigation, title, questions}) {
   return (
     <View style={styles.card}>
       <TouchableOpacity
         onPress={() => navigation.navigate(
           'Deck',
-          { title, cardTotal, questions }
+          { title, questions }
         )}>
         <Text style={{fontSize: 20}} >{title}</Text>
-        <Text>{cardTotal} Cards</Text>
+        <Text>{questions.length} Cards</Text>
       </TouchableOpacity>
     </View>
   )

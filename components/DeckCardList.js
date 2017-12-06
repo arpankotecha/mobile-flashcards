@@ -1,14 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { View } from 'react-native'
 import DeckCard from './DeckCard'
 
-export default function DeckCardList({ navigation, screenProps }) {
+function DeckCardList({ navigation, decks }) {
   return (
     <View style={{flex:1}}>
-      {screenProps.decks.map((deck, i) => (
+      {decks.map((deck, i) => (
         <DeckCard 
           title={deck.title} 
-          cardTotal={deck.cardTotal} 
+          cardTotal={deck.questions.length} 
           questions={deck.questions}
           key={i}
           navigation={navigation}/>
@@ -16,3 +17,11 @@ export default function DeckCardList({ navigation, screenProps }) {
     </View>
   )
 }
+
+function mapStateToProps({decks}){
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(DeckCardList)
