@@ -13,7 +13,6 @@ class Deck extends Component {
       <View>
         <Text>{title}</Text>
         <Text>{questions.length} cards</Text>
-        <Text>{JSON.stringify(questions)} cards</Text>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate(
             'NewQuestionCard',
