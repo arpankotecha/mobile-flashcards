@@ -47,7 +47,7 @@ export default class Quiz extends Component {
             style={styles.button}
             onPress={() => this.props.navigation.navigate(
               'Quiz',
-              {questions}
+              {title, questions}
             )}>
             <Text style={{fontWeight: 'bold'}}>Restart Quiz</Text>
           </TouchableOpacity>
