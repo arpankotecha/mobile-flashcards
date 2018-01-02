@@ -6,6 +6,9 @@ git clone https://github.com/arpankotecha/mobile-flashcards.git
 yarn install
 yarn start
 
+## Devices
+This app has been tested for IphoneX and Google Nexus 5X - 6.0.0
+
 ## Contributing
 Feel free to submit pull requests!
 
