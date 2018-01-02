@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { NEW_DECK } from '../actions'
 import { NEW_QUESTION } from '../actions'
 
+  /*
 const defaultDecks = [
   {
     title: "Deck 1",
@@ -51,16 +52,17 @@ const defaultDecks = [
     ]
   }
 ]
+*/
 
-function decks(state=defaultDecks, action) {
+function decks(state=[], action) {
   switch (action.type){
     case NEW_DECK:
       return [
         ...state,
         {
           title: action.title,
-          cardTotal: 0,
-          questions: []
+          cardTotal: action.questions.length,
+          questions: action.questions
         }
       ]
     case NEW_QUESTION:
