@@ -29,7 +29,12 @@ class NewDeck extends Component {
 
     Keyboard.dismiss()
 
-    this.props.navigation.dispatch(NavigationActions.back())
+    this.props.navigation.navigate(
+      'Deck', 
+      {
+        title: this.state.title,
+        questions: {}
+      })
   }
 
   render() {
